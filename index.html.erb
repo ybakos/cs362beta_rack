@@ -5,8 +5,8 @@
 </head>
 <body>
 	<h1>Top 100 Albums of All Time</h1>
-	<% @albums.each do |album| %>
- 		<%= puts album %>
-	<% end %>
+	<ol><% @albums.each do |album| %>
+ 		<li><%= album %></li>
+	<% end %></ol>
 </body>
 </html>

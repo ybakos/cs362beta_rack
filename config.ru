@@ -13,16 +13,16 @@ class TopAlbumsAll
   def call(env)
   	request = Rack::Request.new(env)
   	if request.get? && request.path == "/"
-  		template = File.read('index.html.erb')
-  		Rack::Response.new(template)
+  		html = File.read('index.html.erb')
+      rendered_html = render(html)
+  		Rack::Response.new(rendered_html)
   	else
   		Rack::Response.new("File not found", 404)
   	end
   end
 
   def render(template)
-  	path = File.expand_path("../views/#{template}", __FILE__)
-  	ERB.new(File.read(path)).result(binding)
+  	ERB.new(template).result(binding)
   end
 
 end
