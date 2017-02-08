@@ -1,16 +1,12 @@
 require 'erb'
-require_relative "Album"
+require_relative "album"
 
-class TopAlbumsAll
-
-	@albums = []
-
+class Top_albums
 	def initialize
 		File.open("top_100_albums.txt", "r") do |file|
 			@albums = file.readlines
 		end
-
-		@album_objects = readInAlbums()
+		@album_objects = process_albums()
 	end
 
 
@@ -29,19 +25,15 @@ class TopAlbumsAll
   	ERB.new(template).result(binding)
 	end
 
-	def readInAlbums()
-
+	def process_albums()
 		album_objects = @albums.map.with_index do |d,i|
 			commaSplit = d.split(",")
 			Album.new(commaSplit[0], commaSplit[1], i+1)
-
 		end
-
-
 	end
 end
 
 # updates screen without having to kill local server and re-rackup
 use Rack::Reloader
 
-run TopAlbumsAll.new
+run Top_albums.new
