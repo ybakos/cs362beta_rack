@@ -43,7 +43,7 @@ class TopAlbumsAll
 
 		album_objects = @albums.map.with_index do |d,i|
 			commaSplit = d.split(",")
-			Album.new(commaSplit[0], commaSplit[1], i)
+			Album.new(commaSplit[0], commaSplit[1], i+1)
 
 		end
 
