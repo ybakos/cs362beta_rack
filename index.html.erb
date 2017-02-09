@@ -10,7 +10,11 @@
   	<th>
   		<td>Rank</td>
   		<td>Album Title</td>
-  		<td>Year</td>
+  		<td>
+        <form action="/sort_year" method="get">
+          <input type="submit" value="Year">
+        </form>
+      </td>
   	</th>
 	 <% @album_objects.each do |album| %>
   		<tr>

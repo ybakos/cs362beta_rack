@@ -16,6 +16,11 @@ class Top_albums
   		html = File.read('index.html.erb')
       rendered_html = render(html)
   		Rack::Response.new(rendered_html)
+  	elsif request.get? && request.path =="/sort_year"
+      sort_by_year()
+      html = File.read('index.html.erb')
+      rendered_html = render(html)
+      Rack::Response.new(rendered_html)
   	else
   		Rack::Response.new("File not found", 404)
   	end
@@ -32,4 +37,8 @@ class Top_albums
 		end
 	end
   
+  def sort_by_year
+    @album_objects.sort! { |first,second| first.year <=> second.year }
+  end
+
 end
