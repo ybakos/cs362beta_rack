@@ -5,11 +5,16 @@
 </head>
 <body>
 	<h1>Top 100 Albums of All Time</h1>
-  
+
 	<table>
   	<th>
   		<td>Rank</td>
   		<td>Album Title</td>
+		<td>
+			<form action="/sort_by_album_title_length" method ="get">
+				<input type="submit" value="Album Title Length">
+			</form>
+		</td>
   		<td>
         <form action="/sort_year" method="get">
           <input type="submit" value="Year">
