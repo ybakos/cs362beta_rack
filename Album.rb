@@ -1,6 +1,6 @@
 class Album
 
-  attr_reader :title, :year, :rank
+  attr_accessor :title, :year, :rank
 
   def initialize(title, year, rank)
     @title = title
