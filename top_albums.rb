@@ -7,7 +7,7 @@ class Top_albums
 		File.open("top_100_albums.txt", "r") do |file|
 			@albums = file.readlines
 		end
-		@album_objects = process_albums()
+		@album_objects = process_albums
 	end
 
   def call(env)
@@ -17,17 +17,17 @@ class Top_albums
       rendered_html = render(html)
   		Rack::Response.new(rendered_html)
   	elsif request.get? && request.path =="/sort_year"
-      sort_by_year()
+      sort_by_year
       html = File.read('index.html.erb')
       rendered_html = render(html)
       Rack::Response.new(rendered_html)
   elsif request.get? && request.path =="/sort_by_album_title_length"
-	   sort_by_album_title_length()
-	   html = File.read('index.html.erb')
+	    sort_by_album_title_length
+	    html = File.read('index.html.erb')
 	    rendered_html = render(html)
       Rack::Response.new(rendered_html)
    elsif request.get? && request.path =="/sort_by_album_abc"
-     sort_by_album_abc()
+      sort_by_album_abc
       html = File.read('index.html.erb')
       rendered_html = render(html)
       Rack::Response.new(rendered_html)
