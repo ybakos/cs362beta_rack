@@ -2,6 +2,7 @@ require 'erb'
 require_relative "album"
 
 class Top_albums
+
 	def initialize
 		File.open("top_100_albums.txt", "r") do |file|
 			@albums = file.readlines
@@ -30,4 +31,5 @@ class Top_albums
 			Album.new(commaSplit[0], commaSplit[1], i+1)
 		end
 	end
+  
 end
