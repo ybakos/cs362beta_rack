@@ -22,9 +22,14 @@ class Top_albums
       rendered_html = render(html)
       Rack::Response.new(rendered_html)
   elsif request.get? && request.path =="/sort_by_album_title_length"
-	  sort_by_album_title_length()
-	  html = File.read('index.html.erb')
-	  rendered_html = render(html)
+	   sort_by_album_title_length()
+	   html = File.read('index.html.erb')
+	    rendered_html = render(html)
+      Rack::Response.new(rendered_html)
+   elsif request.get? && request.path =="/sort_by_album_abc"
+     sort_by_album_abc()
+      html = File.read('index.html.erb')
+      rendered_html = render(html)
       Rack::Response.new(rendered_html)
   	else
   		Rack::Response.new("File not found", 404)
@@ -48,6 +53,10 @@ class Top_albums
 
   def sort_by_album_title_length
 	  @album_objects.sort! { |first, second| first.title.length <=> second.title.length }
+  end
+
+  def sort_by_album_abc
+    @album_objects.sort! { |first, second| first.title.downcase <=> second.title.downcase }
   end
 
 end
