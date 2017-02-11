@@ -12,10 +12,14 @@ class Top_albums
 
   def call(env)
   	request = Rack::Request.new(env)
+
   	if request.get? && request.path == "/"
   		html = File.read('index.html.erb')
       rendered_html = render(html)
   		Rack::Response.new(rendered_html)
+
+
+
   	elsif request.get? && request.path =="/sort_year"
       sort_by_year
       html = File.read('index.html.erb')
