@@ -44,7 +44,7 @@ class TopAlbumsApp
 	def process_albums
 		@albums.map.with_index do |data, index|
 			album_attributes = data.split(",")
-			Album.new(album_attributes[0], album_attributes[1], index + 1)
+			Album.new(index + 1, album_attributes[0], album_attributes[1])
 		end
 	end
 
