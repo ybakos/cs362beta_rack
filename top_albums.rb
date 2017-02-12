@@ -12,15 +12,16 @@ class TopAlbumsApp
 
   def call(env)
   	request = Rack::Request.new(env)
+
   	if request.get? && request.path == "/"
   		send_response('index.html.erb')
   	elsif request.get? && request.path == "/sort_year"
       sort_by_year
       send_response('index.html.erb')
-  elsif request.get? && request.path == "/sort_by_album_title_length"
+    elsif request.get? && request.path == "/sort_by_album_title_length"
 	    sort_by_album_title_length
 	    send_response('index.html.erb')
-   elsif request.get? && request.path == "/sort_by_album"
+    elsif request.get? && request.path == "/sort_by_album"
       sort_by_album
       send_response('index.html.erb')
 		elsif request.get? && request.path =="/sort_by_rank"

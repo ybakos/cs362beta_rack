@@ -1,7 +1,7 @@
 require 'rack/test'
 require 'test/unit'
 
-class Top_albums < Test::Unit::TestCase # Why the shit name, and why is it the same name as another class? (Hint: TopAlbumsTest)
+class TopAlbumsTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
   def app
