@@ -1,4 +1,4 @@
-require "rack/test" # Use single ticks, per convention. Also, if you use this, add the lib to the Gemfile.
+require 'rack/test'
 require 'test/unit'
 
 class Top_albums < Test::Unit::TestCase # Why the shit name, and why is it the same name as another class? (Hint: TopAlbumsTest)

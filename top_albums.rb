@@ -1,5 +1,5 @@
 require 'erb'
-require_relative "album" # Use single ticks.
+require_relative 'album'
 
 class Top_albums # Why does this class still have a shit name? :) I commented about this on GH.
 
