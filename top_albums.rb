@@ -1,7 +1,7 @@
 require 'erb'
 require_relative 'album'
 
-class Top_albums # Why does this class still have a shit name? :) I commented about this on GH.
+class TopAlbumsApp # Why does this class still have a shit name? :) I commented about this on GH.
 
 	def initialize
 		File.open("top_100_albums.txt", "r") do |file|
