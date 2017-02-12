@@ -31,7 +31,13 @@ class Top_albums
       html = File.read('index.html.erb')
       rendered_html = render(html)
       Rack::Response.new(rendered_html)
-  	else
+		elsif request.get? && request.path =="/sort_by_rank"
+			sort_by_rank
+			html = File.read('index.html.erb')
+			rendered_html = render(html)
+			Rack::Response.new(rendered_html)
+
+		else
   		Rack::Response.new("File not found", 404)
   	end
   end
@@ -57,6 +63,10 @@ class Top_albums
 
   def sort_by_album_abc
     @album_objects.sort! { |first, second| first.title.downcase <=> second.title.downcase }
-  end
+	end
+
+	def sort_by_rank
+		@album_objects.sort! {|first,second| first.rank <=> second.rank}
+	end
 
 end

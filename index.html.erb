@@ -8,7 +8,13 @@
 
 	<table>
   	<th>
-  		<td>Rank</td>
+
+			<td>
+				<form action="/sort_by_rank" method="get">
+					<input type="submit" value="Rank">
+				</form>
+			</td>
+
   		<td>
         <form action="/sort_by_album_abc" method="get">
           <input type="submit" value="Album">
@@ -27,6 +33,7 @@
       </td>
 
   	</th>
+
 	  <% @album_objects.each do |album| %>
   		<tr>
   			<td><%= album.rank %><td>
