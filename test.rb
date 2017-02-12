@@ -5,8 +5,7 @@ class Top_albums < Test::Unit::TestCase # Why the shit name, and why is it the s
   include Rack::Test::Methods
 
   def app
-    TopAlbumsApp.new # Why does this class still have a shit name? :) I commented about this on GH.
-    puts "this is somethign"
+    TopAlbumsApp.new
   end
 
   # def test_redirect_logged_in_users_to_dashboard

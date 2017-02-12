@@ -1,5 +1,4 @@
 class Album
-
   attr_accessor :title, :year, :rank
 
   def initialize(title, year, rank)
@@ -7,5 +6,4 @@ class Album
     @year = year
     @rank = rank
   end
-
 end
