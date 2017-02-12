@@ -1,11 +1,11 @@
-require "rack/test"
+require "rack/test" # Use single ticks, per convention. Also, if you use this, add the lib to the Gemfile.
 require 'test/unit'
 
-class Top_albums < Test::Unit::TestCase
+class Top_albums < Test::Unit::TestCase # Why the shit name, and why is it the same name as another class? (Hint: TopAlbumsTest)
   include Rack::Test::Methods
 
   def app
-    Top_albums.new
+    Top_albums.new # Why does this class still have a shit name? :) I commented about this on GH.
     puts "this is somethign"
   end
 
