@@ -37,9 +37,10 @@ class TopAlbumsTest < Minitest::Test
     assert @album_objects[0].year < @album_objects[1].year
   end
 
-  def testSortAlbumsByRank
+  def test_sort_albums_by_rank
     get 'sort_rank'
     assert last_response.ok?
     assert @album_objects[2].rank > @album_objects[1].rank
+  end
 
 end
