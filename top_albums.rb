@@ -1,7 +1,7 @@
 require 'erb'
 require_relative 'album'
 
-class Top_albums # Why does this class still have a shit name? :) I commented about this on GH.
+class TopAlbumsApp
 
 	def initialize
 		File.open("top_100_albums.txt", "r") do |file|
@@ -14,33 +14,17 @@ class Top_albums # Why does this class still have a shit name? :) I commented ab
   	request = Rack::Request.new(env)
 
   	if request.get? && request.path == "/"
-  		html = File.read('index.html.erb') # How many times is this method duplicated in `call`? :)
-      rendered_html = render(html) # And this one is never duplicated, is it? :)
-  		Rack::Response.new(rendered_html) # Is the temporary variable rendered_html even necessary?
-
-  	elsif request.get? && request.path =="/sort_year" # One space after ==
       sort_by_year
-      html = File.read('index.html.erb')
-      rendered_html = render(html)
-      Rack::Response.new(rendered_html)
-  # drunk indentation?
-  elsif request.get? && request.path =="/sort_by_album_title_length" # One space after ==
+      send_response('index.html.erb')
+    elsif request.get? && request.path == "/sort_by_album_title_length"
 	    sort_by_album_title_length
-	    html = File.read('index.html.erb')
-	    rendered_html = render(html)
-      Rack::Response.new(rendered_html)
-   # drunk indentation?
-   elsif request.get? && request.path =="/sort_by_album_abc" # One space after ==
-      sort_by_album_abc
-      html = File.read('index.html.erb')
-      rendered_html = render(html)
-      Rack::Response.new(rendered_html)
+	    send_response('index.html.erb')
+    elsif request.get? && request.path == "/sort_by_album"
+      sort_by_album
+      send_response('index.html.erb')
 		elsif request.get? && request.path =="/sort_by_rank"
 			sort_by_rank
-			html = File.read('index.html.erb')
-			rendered_html = render(html)
-			Rack::Response.new(rendered_html)
-
+			send_response('index.html.erb')
 		else
   		Rack::Response.new("File not found", 404)
   	end
@@ -50,27 +34,31 @@ class Top_albums # Why does this class still have a shit name? :) I commented ab
   	ERB.new(template).result(binding)
 	end
 
-	def process_albums() # If a method has no params, omit.
-		album_objects = @albums.map.with_index do |d, i| # You don't need the variable `album_objects` at all. The block will return the array that `map` builds.
-			commaSplit = d.split(",") # comma_split. Better yet, choose a better name. (Have you ever seen a "comma split"? If so, tell me what one looks like.)
-			Album.new(commaSplit[0], commaSplit[1], i+1)
+  def send_response(file)
+    html = File.read(file)
+    Rack::Response.new(render(html))
+  end
+
+	def process_albums
+		@albums.map.with_index do |data, index|
+			album_attributes = data.split(",")
+			Album.new(index + 1, album_attributes[0], album_attributes[1])
 		end
 	end
 
   def sort_by_year
-    @album_objects.sort! { |first,second| first.year <=> second.year } # This can be even shorter. (Hint: investigate the sort method.)
+    @album_objects.sort_by! { |album| album.year }
   end
 
   def sort_by_album_title_length
-	  @album_objects.sort! { |first, second| first.title.length <=> second.title.length } # This can be even shorter.
+    @album_objects.sort_by! { |album| album.title.length }
 	end
 
 	def sort_by_rank
-		@album_objects.sort! {|first,second| first.rank <=> second.rank}
+		@album_objects.sort_by! {|album| album.rank }
 	end
 
-	def sort_by_album_abc # Does an album have an abc? There's a better name for this that parallels the other two.
-		@album_objects.sort! { |first, second| first.title.downcase <=> second.title.downcase } # This can be even shorter.
+	def sort_by_album
+		@album_objects.sort_by! { |album| album.title.downcase }
 	end
-
 end

@@ -1,3 +1,5 @@
 source 'https://rubygems.org'
-require 'rack/test'
 gem 'rack'
+gem 'rack-test', '~> 0.6.3'
+gem 'minitest', '~> 5.8', '>= 5.8.4'
+
