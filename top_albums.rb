@@ -1,5 +1,5 @@
 require 'erb'
-require_relative "album" # Use single ticks.
+require_relative 'album'
 
 class Top_albums # Why does this class still have a shit name? :) I commented about this on GH.
 
@@ -17,8 +17,6 @@ class Top_albums # Why does this class still have a shit name? :) I commented ab
   		html = File.read('index.html.erb') # How many times is this method duplicated in `call`? :)
       rendered_html = render(html) # And this one is never duplicated, is it? :)
   		Rack::Response.new(rendered_html) # Is the temporary variable rendered_html even necessary?
-
-      # why so much whitespace here?
 
   	elsif request.get? && request.path =="/sort_year" # One space after ==
       sort_by_year
