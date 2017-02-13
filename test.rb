@@ -8,6 +8,7 @@ RANK = 1
 TITLE = "Test Album"
 YEAR = "2099"
 
+
 class TopAlbumsTest < Minitest::Test
   include Rack::Test::Methods
   def app
@@ -17,7 +18,6 @@ class TopAlbumsTest < Minitest::Test
   def setup 
     @album1 = Album.new(TITLE, YEAR, RANK)
     @album2 = Album.new("Another Album", 2017, 2)
-    @album3 = Album.New("Test Album 2:The Return Of Unit Tests", 1978, 3)
     @album_objects = []
     @album_objects.push(@album1).push(@album2)
   end
@@ -41,6 +41,5 @@ class TopAlbumsTest < Minitest::Test
     get 'sort_rank'
     assert last_response.ok?
     assert @album_objects[2].rank > @album_objects[1].rank
-  end
 
 end
