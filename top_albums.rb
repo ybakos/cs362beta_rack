@@ -27,6 +27,8 @@ class TopAlbumsApp
 		elsif request.get? && request.path =="/sort_by_rank"
 			sort_by_rank
 			send_response('index.html.erb')
+		elsif request.get? && request.path =="/data"
+			Rack::Response.new(@albums, 200)
 		else
   		Rack::Response.new("File not found", 404)
   	end
