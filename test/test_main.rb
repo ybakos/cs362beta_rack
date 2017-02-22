@@ -34,13 +34,13 @@ class TopAlbumsTest < Minitest::Test
   # how would we create an instance of our app and actually assign the app
   # the new album ojects array where we can check if it is sorted or not?
   def test_sort_year_request_sorts_by_year
-    get '/sort_year'
+    get '/year'
     assert last_response.ok?
     assert @album_objects[0].year < @album_objects[1].year
   end
 
   def test_sort_albums_by_rank
-    get '/sort_rank'
+    get '/rank'
     assert last_response.ok?
     assert @album_objects[2].rank > @album_objects[1].rank
   end
