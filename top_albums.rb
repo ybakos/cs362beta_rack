@@ -13,7 +13,7 @@ class TopAlbumsApp
   def call(env)
   	request = Rack::Request.new(env)
 
-  	if resuest.get? && request.path == "/"
+  	if request.get? && request.path == "/"
   		send_response('index.html.erb')
   	elsif request.get? && request.path == "/sort_year"
       sort_by_year
