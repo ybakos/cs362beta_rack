@@ -1,5 +1,5 @@
 class Album
-  attr_accessor :rank, :title, :year
+  attr_accessor :rank, :title, :year, :title_length
 
   def initialize(rank, title, year)
     @rank = rank
@@ -11,6 +11,6 @@ class Album
   def get_title_length(title)
     title.size
   end
-
+  
 end
 
