@@ -5,6 +5,11 @@ class Album
     @rank = rank
     @title = title
     @year = year
+    @title_length = get_title_length(@title)
+  end
+
+  def get_title_length(title)
+    title.size
   end
 
 end
