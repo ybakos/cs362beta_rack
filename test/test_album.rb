@@ -28,4 +28,10 @@ class Top100AlbumsAppTest < Minitest::Test
     assert_respond_to(@album1,:title_length)
   end
 
+  def test_rank_should_be_greater_than_zero
+    assert_raises ArgumentError do
+      Album.new(-1, TITLE, YEAR)
+    end
+  end
+
 end
