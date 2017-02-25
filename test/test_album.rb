@@ -21,4 +21,11 @@ class Top100AlbumsAppTest < Minitest::Test
     assert_equal @album1.title_length, TITLE.length
   end
 
+  def test_responds_to_rank_title_year_and_title_length
+    assert_respond_to(@album1,:rank)
+    assert_respond_to(@album1,:title)
+    assert_respond_to(@album1,:year)
+    assert_respond_to(@album1,:title_length)
+  end
+
 end
