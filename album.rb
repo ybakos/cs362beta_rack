@@ -5,6 +5,7 @@ class Album
     raise ArgumentError.new("Invalid rank") if rank < 1
     raise ArgumentError.new("Invalid rank") if rank > 100
     raise ArgumentError.new("Invalid year") if year.to_i < 1
+    raise ArgumentError.new("Invalid year") if year.to_i > 2017
 
     @rank = rank
     @title = title
