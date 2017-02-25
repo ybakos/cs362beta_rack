@@ -1,4 +1,4 @@
-ENV['RACK_ENV'] = 'test'
+#ENV['RACK_ENV'] = 'test'
 require 'rack/test'
 require 'test/unit'
 require 'minitest/autorun'
@@ -8,7 +8,7 @@ require_relative '../album'
 
 RANK = 1
 TITLE = "Test Album"
-YEAR = "2099"
+YEAR = "1999"
 
 
 class TopAlbumsTest < Minitest::Test
@@ -18,8 +18,8 @@ class TopAlbumsTest < Minitest::Test
   end
 
   def setup 
-    @album1 = Album.new(TITLE, YEAR, RANK)
-    @album2 = Album.new("Another Album", 2017, 2)
+    @album1 = Album.new(RANK, TITLE, YEAR)
+    @album2 = Album.new(2, "Another Album", "2008")
     @album_objects = []
     @album_objects.push(@album1).push(@album2)
   end
@@ -36,13 +36,13 @@ class TopAlbumsTest < Minitest::Test
   def test_sort_year_request_sorts_by_year
     get '/year'
     assert last_response.ok?
-    assert @album_objects[0].year < @album_objects[1].year
+    assert @album_objects[0].year.to_i < @album_objects[1].year.to_i
   end
 
   def test_sort_albums_by_rank
     get '/rank'
     assert last_response.ok?
-    assert @album_objects[2].rank > @album_objects[1].rank
+    assert @album_objects[1].rank > @album_objects[0].rank
   end
 
 end
