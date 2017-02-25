@@ -3,6 +3,7 @@ class Album
 
   def initialize(rank, title, year)
     raise ArgumentError.new("Invalid rank") if rank < 1
+    raise ArgumentError.new("Invalid rank") if rank > 100
 
     @rank = rank
     @title = title
