@@ -47,6 +47,18 @@ class TopAlbumsTest < Minitest::Test
     assert @album_objects[1].title_length > @album_objects[0].title_length
   end
 
+  def test_home_page_displays_albums_by_rank
+    get '/rank'
+    assert last_response.ok?
+    assert_equal @app.album_objects[0].rank, 1
+  end
+
+  def test_home_page_displays_albums_by_rank_last
+    get '/rank'
+    assert last_response.ok?
+    assert_equal @app.album_objects[99].rank, 100
+  end
+
   def test_displays_albums_by_title_length_first
     get '/title_length'
     assert last_response.ok?
