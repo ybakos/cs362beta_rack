@@ -83,10 +83,22 @@ class TopAlbumsTest < Minitest::Test
     assert_equal @app.album_objects[0].title, "'Live' at The Apollo"
   end
 
-    def test_displays_albums_alphabetically_last
+  def test_displays_albums_alphabetically_last
     get '/album'
     assert last_response.ok?
     assert_equal @app.album_objects[99].title, "Wish You Were Here"
+  end
+
+  def test_displays_albums_by_year
+    get '/year'
+    assert last_response.ok?
+    assert_equal @app.album_objects[0].title, "Kind of Blue"
+  end
+
+    def test_displays_albums_by_year_last
+    get '/year'
+    assert last_response.ok?
+    assert_equal @app.album_objects[99].title, "OK Computer"
   end
 
 end
