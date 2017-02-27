@@ -1,4 +1,3 @@
-#ENV['RACK_ENV'] = 'test'
 require 'rack/test'
 require 'test/unit'
 require 'minitest/autorun'
@@ -30,9 +29,6 @@ class TopAlbumsTest < Minitest::Test
     assert last_response.body.include? "Top 100 Albums of All Time"
   end
 
-  #NS: this test passes but I realize it really doesnt test the app
-  # how would we create an instance of our app and actually assign the app
-  # the new album ojects array where we can check if it is sorted or not?
   def test_sort_year_request_sorts_by_year
     get '/year'
     assert last_response.ok?
@@ -43,6 +39,12 @@ class TopAlbumsTest < Minitest::Test
     get '/rank'
     assert last_response.ok?
     assert @album_objects[1].rank > @album_objects[0].rank
+  end
+
+  def test_sort_albums_by_title_length
+    get '/title_length'
+    assert last_response.ok?
+    assert @album_objects[1].title_length > @album_objects[0].title_length
   end
 
 end
