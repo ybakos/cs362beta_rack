@@ -47,4 +47,17 @@ class TopAlbumsTest < Minitest::Test
     assert @album_objects[1].title_length > @album_objects[0].title_length
   end
 
+  def test_displays_albums_by_title_length_first
+    get '/title_length'
+    assert last_response.ok?
+    assert_equal app.album_objects[0].title, "Ten"
+  end
+
+  def test_displays_albums_by_title_length_last
+    get '/title_length'
+    assert last_response.ok?
+    puts @app.album_objects[99].title
+    assert_equal @app.album_objects[99].title, "The Rise and Fall of Ziggy Stardust and the Spiders From Mars"
+  end
+
 end
