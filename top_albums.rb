@@ -2,6 +2,7 @@ require 'erb'
 require_relative 'album'
 
 class TopAlbumsApp
+	attr_accessor :album_objects
 
 	def initialize
 		File.open("top_100_albums.txt", "r") do |file|
